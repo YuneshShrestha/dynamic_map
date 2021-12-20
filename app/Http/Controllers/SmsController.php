@@ -11,7 +11,7 @@ class SmsController extends Controller
         
         Nexmo::message()->send([
             // 'to'=> '9779805332596',
-            'to'=>$request->to,
+            'to'=>'977'.$request->to,
             'from'=> '9779842064331',
             'text'=> 'Latitude:'.$request->latitude.' Longitude:'.$request->longitude,
         ]);
