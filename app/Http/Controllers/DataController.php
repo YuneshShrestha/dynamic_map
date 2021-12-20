@@ -12,4 +12,10 @@ class DataController extends Controller
         $encoded_data = json_encode($data);
         return $encoded_data;
     }
+    public function item($id)
+    {
+        $data = MapData::where('id',$id)->get();
+        $encoded_data = json_encode($data);
+        return $encoded_data;
+    }
 }

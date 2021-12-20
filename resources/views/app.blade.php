@@ -34,7 +34,7 @@
         var map = L.map('map').setView([28.3949, 84.1240], 8);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+        }).addTo(map); 
         L.Control.geocoder().addTo(map);
         L.control.locate().addTo(map);
         let marker;
@@ -49,8 +49,8 @@
                     });
                     // alert(data[index].longitude + " " +data[index].latitude);
                     html = '<div>';
-                    html += '<img height="100px" src="public/image/'+data[index].image+'" alt="Images">';
-                    html += '../../public/image/'+ data[index].image;
+
+                    // html += '../../public/image'+data[index].image;
                     html += '<h3>';
                     html += data[index].name;
                     html += '</h3>';
