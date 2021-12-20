@@ -23,6 +23,7 @@
 </head>
 <body>
     <div id="map"></div>
+    
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.76.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
@@ -36,7 +37,8 @@
         }).addTo(map);
         L.Control.geocoder().addTo(map);
         L.control.locate().addTo(map);
-       
+        let marker;
+        let html;
         $(document).ready(function(){
             $.getJSON('/data',function(data){
                 $.each(data, function(index){
@@ -46,7 +48,18 @@
                         shadowSize: [50,64]
                     });
                     // alert(data[index].longitude + " " +data[index].latitude);
-                    L.marker([parseFloat(data[index].latitude), parseFloat(data[index].longitude)],{icon: hotelIcon}).addTo(map);
+                    html = '<div>';
+                    html += '<img height="100px" src="public/image/'+data[index].image+'" alt="Images">';
+                    html += '../../public/image/'+ data[index].image;
+                    html += '<h3>';
+                    html += data[index].name;
+                    html += '</h3>';
+                    html += '<a href="/data">';
+                    html += 'Button';
+                    html += '</a>';
+                    html += '</div>';
+                    marker = L.marker([parseFloat(data[index].latitude), parseFloat(data[index].longitude)],{icon: hotelIcon}).addTo(map);
+                    marker.bindPopup(html);
                 });
             });
         });
